@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.3'
+ruby '2.6.9'
 
 gem 'rails',      '6.0.3'
 gem 'aws-sdk-s3',              '1.46.0', require: false

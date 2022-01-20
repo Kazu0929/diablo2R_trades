@@ -1,14 +1,10 @@
 require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
-  test "should get home" do
-    get static_pages_home_url
+  test "HOMEページパス及びタイトル確認" do
+    get root_path
     assert_response :success
-  end
-
-  test "should get about" do
-    get static_pages_about_url
-    assert_response :success
+    assert_select "title", "DIABLO2R TRADES"
   end
 
 end

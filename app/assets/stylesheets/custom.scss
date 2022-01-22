@@ -27,9 +27,6 @@ body {
     font-family: 'Diablo', sans-serif;
     margin-bottom: 30px;
   }
-  .submit-buttons {
-    margin: 15px 0;
-  }
 }
 
 .navbar {
@@ -44,6 +41,14 @@ body {
 
 
 //フォーム
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
 #error_explanation {
   border-radius: 10px;
   background-color: #f8d7da;
@@ -57,4 +62,10 @@ body {
     list-style: none;
   }
 }
+
+.submit-buttons {
+  margin: 15px 0;
+  @include box_sizing;
+}
+
 

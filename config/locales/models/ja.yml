@@ -6,3 +6,10 @@ ja:
         password: パスワード
         password_confirmation: パスワードの確認
         email: メールアドレス
+  activemodel:
+    models:
+      forms/session: セッション
+    attributes:
+      forms/session:
+        email: メールアドレス
+        password: パスワード

@@ -1,0 +1,19 @@
+<% provide(:title, "Log in") %>
+<h1>Log in</h1>
+
+<div class="row">
+  <div class="mx-auto col-md-6 item-contents">
+    <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
+
+      <%= f.label :email, User.human_attribute_name(:email) %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :password, User.human_attribute_name(:password) %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.submit "ログイン", class: "btn btn-primary submit-buttons" %>
+    <% end %>
+
+    <p>登録がまだの方 <%= link_to "登録する", signup_path, class: "text-white bg-dark" %></p>
+  </div>
+</div>

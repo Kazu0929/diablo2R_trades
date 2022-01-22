@@ -1,9 +1,9 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+
   def setup
-    @user = User.new(name: "Example User", email: "user@example.com",
-                     password: "112233", password_confirmation: "112233")
+    @user = User.new(name: "Example User", email: "user@example.com", password: "112233", password_confirmation: "112233")
   end
 
   test "validでtrueか確認" do
@@ -30,7 +30,7 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
-  test "emailの正規表現バリデーションでtruになるか" do
+  test "emailの正規表現バリデーションでtrueになるか" do
     valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
                          first.last@foo.jp alice+bob@baz.cn]
     valid_addresses.each do |valid_address|
@@ -69,9 +69,8 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "emailが小文字変換され保存されるか" do
-    mixed_case_email = "Example@ExAMPle.CoM"
-    @user.email = mixed_case_email
-    @user.save
+    mixed_case_email = "Test@ExAMPle.CoM"
+    @user.update_attribute(:email, mixed_case_email)
     assert_equal mixed_case_email.downcase, @user.reload.email
   end
 

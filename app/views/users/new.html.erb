@@ -1,2 +1,9 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<% provide(:title, 'Sign up') %>
+<% provide(:button_text, '登録する') %>
+<h1>Sign up</h1>
+<div class="row">
+  <div class="mx-auto col-md-6 item-contents">
+    <%= render 'layouts/form' %>
+  </div>
+</div>
+</div>

@@ -1,13 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap');
 @import url('https://fonts.cdnfonts.com/css/diablo');
 
+//ミックスイン、変数など
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
 //全体
 
 body {
   font-family: 'Noto Sans JP', sans-serif;
 }
 
-//画面幅まで背景を広げる
 .site-contents {
   background-color: black;
   width: 100vw;
@@ -21,9 +27,34 @@ body {
     font-family: 'Diablo', sans-serif;
     margin-bottom: 30px;
   }
+  .submit-buttons {
+    margin: 15px 0;
+  }
 }
-
 
 .navbar {
   background-color: #393939;
 }
+
+.item-contents {
+  padding: 10px;
+  background-color: #727272;
+  border-radius: 10px;
+}
+
+
+//フォーム
+#error_explanation {
+  border-radius: 10px;
+  background-color: #f8d7da;
+  color: red;
+  padding: 10px;
+  .alert-danger {
+    border-color: #f8d7da;
+  }
+  ul {
+    color: red;
+    list-style: none;
+  }
+}
+

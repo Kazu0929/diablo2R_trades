@@ -4,3 +4,6 @@
   <p>ディアブロ２:リザレクテッドのトレードサイトです</p>
   <p>会員登録をして、アイテムを登録しトレードしましょう</p>
   <%= link_to "登録する", new_user_path, class: "btn btn-primary btn-lg" %>
+
+  <%= javascript_pack_tag 'search' %>
+  <%= select_tag('animal', options_for_select([['いぬ', 'dog'], ['ねこ', 'cat'], ['とり', 'bird'], ['うし', 'cow'], ['へび', 'snake']]), class: "form-control search") %>

@@ -17,7 +17,8 @@ body {
   background-image: image_url("background.jpeg");
   background-size: cover;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  padding-bottom: 15px;
 }
 
 .container {
@@ -37,6 +38,11 @@ body {
   padding: 10px;
   background-color: #727272;
   border-radius: 10px;
+  margin: 10px 0;
+}
+
+.pagination {
+  padding: 10px 0;
 }
 
 
@@ -81,4 +87,22 @@ input, textarea, select, .uneditable-input {
   margin-left: 0;
 }
 
+//ユーザー　インデックスページ
+
+.users {
+  list-style: none;
+  margin: 0;
+  text-align: left;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid lightgray;
+  }
+  a {
+    color: #fff3de;
+    &:hover {
+      color: #fff3de;
+    }
+  }
+}
 

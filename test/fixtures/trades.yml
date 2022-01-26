@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: example
+  mode: 1
+  season: 1
+  trade_type: 1
+  item_to_want: "one"
+  item_to_offer: "one"
+  content: "one"
+  created_at: <%= Time.zone.now %>
+
+two:
+  user: example
+  mode: 1
+  season: 1
+  trade_type: 1
+  item_to_want: "two"
+  item_to_offer: "two"
+  content: "two"
+  created_at: <%= 10.minutes.ago %>
+
+three:
+  user: example
+  mode: 1
+  season: 1
+  trade_type: 1
+  item_to_want: "three"
+  item_to_offer: "three"
+  content: "three"
+  created_at: <%= 1.hours.ago %>

@@ -61,6 +61,7 @@
     <orderEntry type="library" scope="PROVIDED" name="coderay (v1.1.3, rbenv: 2.6.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.1.9, rbenv: 2.6.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="crass (v1.0.6, rbenv: 2.6.9) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="enum_help (v0.0.18, rbenv: 2.6.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubi (v1.10.0, rbenv: 2.6.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="execjs (v2.8.1, rbenv: 2.6.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="faker (v2.1.2, rbenv: 2.6.9) [gem]" level="application" />

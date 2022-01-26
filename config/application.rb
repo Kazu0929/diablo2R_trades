@@ -13,7 +13,7 @@ module Diablo2RTrades
 
     #デフォルトの言語指定
     config.i18n.default_locale = :ja
-
+    config.time_zone = 'Tokyo'
     # I18nライブラリに訳文の探索場所を指示する
     config.i18n.load_path += Dir[Rails.root.join('config/locales/**/*.yml').to_s]
     # Settings in config/environments/* take precedence over those specified here.

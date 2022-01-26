@@ -10,7 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_23_154007) do
+ActiveRecord::Schema.define(version: 2022_01_26_162612) do
+
+  create_table "platforms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "trade_platforms", force: :cascade do |t|
+    t.integer "trade_id"
+    t.integer "platform_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["platform_id"], name: "index_trade_platforms_on_platform_id"
+    t.index ["trade_id"], name: "index_trade_platforms_on_trade_id"
+  end
+
+  create_table "trades", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "mode", default: 0, null: false
+    t.integer "season", default: 0, null: false
+    t.integer "trade_type", default: 0, null: false
+    t.string "item_to_want"
+    t.string "item_to_offer"
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "created_at"], name: "index_trades_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_trades_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -23,4 +52,6 @@ ActiveRecord::Schema.define(version: 2022_01_23_154007) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "trade_platforms", "platforms"
+  add_foreign_key "trades", "users"
 end

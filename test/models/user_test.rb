@@ -10,22 +10,22 @@ class UserTest < ActiveSupport::TestCase
     assert @user.valid?
   end
 
-  test "nameのバリデーション" do
+  test "nameの存在確認" do
     @user.name = "     "
     assert_not @user.valid?
   end
 
-  test "emailのバリデーション" do
+  test "emailの存在確認" do
     @user.email = "     "
     assert_not @user.valid?
   end
 
-  test "nameの長さバリデーションでfalseか" do
+  test "nameの字数制限の確認" do
     @user.name = "a" * 51
     assert_not @user.valid?
   end
 
-  test "emailの長さのバリデーションでfalseか" do
+  test "emailの字数制限の確認" do
     @user.email = "a" * 244 + "@example.com"
     assert_not @user.valid?
   end
@@ -86,5 +86,14 @@ class UserTest < ActiveSupport::TestCase
 
   test "remember_digestがnilならfalseを返すか" do
     assert_not @user.authenticated?('')
+  end
+
+  test "userが削除されたら関連するtradeも削除されるか" do
+    @user.save
+    @user.trades.create!( mode:"Softcore", season:"Normal",
+                          platform:"PC", trade_type:"Buy", item_to_want:"AAA", item_to_offer:"CCC", content:"text")
+    assert_difference 'Trade.count', -1 do
+      @user.destroy
+    end
   end
 end

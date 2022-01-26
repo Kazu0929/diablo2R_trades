@@ -1,0 +1,20 @@
+.trade-icon {
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin-right: 5px;
+}
+
+.trades-contents {
+  border-radius: 10px;
+}
+
+.timestamp {
+  color: darkgray;
+
+  a {
+    color: #fff3de;
+    &:hover {
+      color: #fff3de;
+    }
+  }
+}

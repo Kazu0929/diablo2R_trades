@@ -8,4 +8,11 @@
       </h3>
     </section>
   </aside>
+  <div class="col-md-7 offset-md-1 bg-secondary trades-contents">
+    <% if @user.trades.any? %>
+      <h3>Trades (<%= @user.trades.count %>)</h3>
+        <%= render @trades %>
+      <%= will_paginate(@trades, renderer: WillPaginate::ActionView::BootstrapLinkRenderer) %>
+    <% end %>
+  </div>
 </div>

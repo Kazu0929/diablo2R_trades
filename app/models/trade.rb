@@ -22,7 +22,7 @@ class Trade < ApplicationRecord
   class << self
     def search(id,trade_type, item)
       #トレードタイプで検索条件変更
-      if trade_type == 0
+      if trade_type == "Buy"
         where.not(user_id: id).where(trade_type: trade_type, item_to_want: item)
       else
         where.not(user_id: id).where(trade_type: trade_type, item_to_offer: item)

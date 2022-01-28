@@ -1,18 +1,20 @@
 <% provide(:title, @user.name) %>
 <h1>My Page</h1>
 <div class="row">
-  <aside class="col-md-4 item-contents">
+  <aside class="col-md-4 item-contents bg-secondary">
     <section class="user_info">
       <h3>
         <%= @user.name %>
       </h3>
     </section>
   </aside>
-  <div class="col-md-7 offset-md-1 bg-secondary trades-contents">
+  <div class="col-md-7 offset-md-1 bg-secondary item-contents">
     <% if @user.trades.any? %>
-      <h3>Trades (<%= @user.trades.count %>)</h3>
-        <%= render @trades %>
+      <h3>投稿数 (<%= @user.trades.count %>)</h3>
+      <%= render @trades %>
       <%= will_paginate(@trades, renderer: WillPaginate::ActionView::BootstrapLinkRenderer) %>
+    <% else %>
+      <h3>投稿はまだありません</h3>
     <% end %>
   </div>
 </div>

@@ -6,6 +6,13 @@ ja:
         password: パスワード
         password_confirmation: パスワードの確認
         email: メールアドレス
+      trade:
+        mode: モード
+        season: シーズン
+        trade_type: トレードの種類
+        item_to_want: 欲しいアイテム
+        item_to_offer: 提示アイテム
+        content: 内容
   activemodel:
     models:
       forms/session: セッション
@@ -16,7 +23,7 @@ ja:
   enums:
     trade:
       mode:
-        Softcore: ノーマル
+        Softcore: ソフトコア
         Hardcore: ハードコア
       season:
         Normal: ノンシーズン

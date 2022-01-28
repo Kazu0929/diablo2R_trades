@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UsersEditTest < ActionDispatch::IntegrationTest
   def setup
-    @user = users(:example)
+    @user = users(:first)
   end
 
   test "プロフィール編集失敗時の挙動確認" do

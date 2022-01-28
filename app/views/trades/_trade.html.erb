@@ -9,20 +9,20 @@
     <span class="trade-icon bg-dark"> <%= trade.mode_i18n %></span>
     <span class="trade-icon bg-dark"><%= trade.season_i18n %></span>
   </div>
-  <div class="card-body">
+  <div class="card-body text-left">
     <!--トレードタイプで順番を変更-->
     <% if trade.trade_type == "Buy" %>
-      <h3 class="card-title text-left">
+      <h3 class="card-title">
         求）<%= trade.item_to_want %>
       </h3>
-      <h3 class="card-title text-left">
+      <h3 class="card-title">
         出）<%= trade.item_to_offer %>
       </h3>
     <% else %>
-      <h3 class="card-title text-left">
+      <h3 class="card-title">
         出）<%= trade.item_to_offer %>
       </h3>
-      <h3 class="card-title text-left">
+      <h3 class="card-title">
         求）<%= trade.item_to_want %>
       </h3>
     <% end %>
@@ -46,10 +46,14 @@
       <% end %>
     </span>
   </div>
-    <div class="card-footer text-left">
+  <div class="card-footer text-left card-footer-contents">
     <span class="timestamp">
-    <%= link_to @user.name, @user %>が<%= time_ago_in_words(trade.created_at) %>に投稿
+    <%= link_to trade.user.name, trade.user %>が<%= time_ago_in_words(trade.created_at) %>に投稿
     </span>
-    </div>
+    <% if current_user?(trade.user) %>
+        <%= link_to "delete", trade, method: :delete,
+                    data: { confirm: "本当に消しますか？" }, class: "delete-link" %>
+    <% end %>
+  </div>
 
 </div>

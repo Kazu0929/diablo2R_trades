@@ -3,9 +3,8 @@ require 'test_helper'
 class TradeTest < ActiveSupport::TestCase
 
   def setup
-    @user = users(:example)
-    @trade = @user.trades.build( mode:"Softcore", season:"Normal",
-                       platform:"PC", trade_type:"Buy", item_to_want:"AAA", item_to_offer:"CCC", content:"text")
+    @user = users(:first)
+    @trade = @user.trades.build( mode:"Softcore", season:"Normal", trade_type:"Buy", item_to_want:"AAA", item_to_offer:"CCC", content:"text")
   end
 
   test "インスタンス生成されるか" do
@@ -48,6 +47,6 @@ class TradeTest < ActiveSupport::TestCase
   end
 
   test "データを最新順に取得しているか" do
-    assert_equal trades(:one), Trade.first
+    assert_equal trades(:orange), Trade.first
   end
 end

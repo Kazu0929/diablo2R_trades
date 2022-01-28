@@ -4,17 +4,24 @@
   margin-right: 5px;
 }
 
-.trades-contents {
-  border-radius: 10px;
-}
+.card-footer-contents {
+  display: flex;
+  justify-content: space-between;
+  .timestamp {
+    color: darkgray;
 
-.timestamp {
-  color: darkgray;
-
-  a {
-    color: #fff3de;
-    &:hover {
+    a {
       color: #fff3de;
+      &:hover {
+        color: #fff3de;
+      }
     }
+  }
+  .delete-link {
+    color: red;
+    &:hover {
+      color: red;
+    }
+
   }
 }

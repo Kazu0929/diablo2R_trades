@@ -1,0 +1,27 @@
+<%= form_with(model: @trade, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field form-group">
+    <%= f.label :mode %>
+    <%= f.collection_select :mode, Trade.modes_i18n, :first, :last,{}, {class: "form-control"} %>
+
+    <%= f.label :season %>
+    <%= f.collection_select :season, Trade.seasons_i18n, :first, :last,{}, {class: "form-control"} %>
+
+    <%= f.label :trade_type %>
+    <%= f.collection_select :trade_type, Trade.trade_types_i18n, :first, :last,{}, {class: "form-control"} %>
+
+    <label>プラットフォーム：必須</label>
+    <%= javascript_pack_tag 'search' %>
+    <%= f.collection_select :platform_ids, Platform.all, :id, :name,{}, {class: "form-control search", multiple: true, required: true}  %>
+
+    <%= f.label :item_to_want %>
+    <%= f.select :item_to_want, options_for_select(@items),{}, class: "form-control search" %>
+
+    <%= f.label :item_to_offer %>
+    <%= f.select :item_to_offer, options_for_select(@items),{}, class: "form-control search" %>
+
+    <%= f.label :content %>
+    <%= f.text_area :content, placeholder: "詳細なオプションなどを記載",  class: "form-control"%>
+  </div>
+  <%= f.submit "投稿する", class: "btn btn-primary" %>
+<% end %>

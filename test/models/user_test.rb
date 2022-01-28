@@ -91,7 +91,7 @@ class UserTest < ActiveSupport::TestCase
   test "userが削除されたら関連するtradeも削除されるか" do
     @user.save
     @user.trades.create!( mode:"Softcore", season:"Normal",
-                          platform:"PC", trade_type:"Buy", item_to_want:"AAA", item_to_offer:"CCC", content:"text")
+                          trade_type:"Buy", item_to_want:"AAA", item_to_offer:"CCC", content:"text")
     assert_difference 'Trade.count', -1 do
       @user.destroy
     end

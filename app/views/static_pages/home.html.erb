@@ -1,3 +1,24 @@
+<% if logged_in? %>
+  <h1>Trades</h1>
+  <div class="row">
+    <aside class="col-md-4 item-contents bg-secondary">
+      <section>
+        <%= render 'shared/user_info' %>
+      </section>
+      <section>
+        <%= render 'shared/trade_form' %>
+      </section>
+    </aside>
+
+    <div class="col-md-7 offset-md-1 bg-secondary item-contents">
+      <% if @trades.any? %>
+        <h3>全ての投稿数 (<%= @trades.count %>)</h3>
+        <%= render @trades %>
+        <%= will_paginate(@trades, renderer: WillPaginate::ActionView::BootstrapLinkRenderer) %>
+      <% end %>
+    </div>
+  </div>
+<% else %>
   <h1>DIABLO2 RESURRECTED TRADES</h1>
 
   <h2>EVIL HAS SURVIVED</h2>
@@ -5,5 +26,4 @@
   <p>会員登録をして、アイテムを登録しトレードしましょう</p>
   <%= link_to "登録する", new_user_path, class: "btn btn-primary btn-lg" %>
 
-  <%= javascript_pack_tag 'search' %>
-  <%= select_tag('animal', options_for_select([['いぬ', 'dog'], ['ねこ', 'cat'], ['とり', 'bird'], ['うし', 'cow'], ['へび', 'snake']]), class: "form-control search") %>
+<% end %>

@@ -1,0 +1,26 @@
+<h2>Search</h2>
+<div class="row">
+  <div class="col-md-4 item-contents bg-secondary mx-auto">
+    <%= form_with url: search_path, method: :get, local: true do |f| %>
+    <div class="search-form form-group">
+        <label>トレードタイプ</label>
+        <%= f.collection_select :trade_type, Trade.trade_types_i18n, :first, :last, {}, { class: "form-control" } %>
+
+        <label>検索したいアイテム</label>
+        <%= javascript_pack_tag 'search' %>
+        <%= f.select :item, options_for_select(@items), {}, class: "form-control search" %>
+    </div>
+    <%= f.submit "検索する", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+      <% if @trades.any? %>
+        <div class="col-md-7 offset-md-1 item-contents bg-secondary">
+
+          <h3>検索結果</h3>
+          <%= render @trades %>
+          <%= will_paginate(@trades, renderer: WillPaginate::ActionView::BootstrapLinkRenderer) %>
+
+        </div>
+      <% end %>
+      </div>

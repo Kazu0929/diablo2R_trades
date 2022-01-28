@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UsersLoginTest < ActionDispatch::IntegrationTest
   def setup
-    @user = users(:example)
+    @user = users(:first)
   end
 
   test "ログイン成功からログアウトまでの挙動確認" do

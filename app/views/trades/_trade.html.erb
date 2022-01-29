@@ -48,7 +48,8 @@
   </div>
   <div class="card-footer text-left card-footer-contents">
     <span class="timestamp">
-    <%= link_to trade.user.name, trade.user %>が<%= time_ago_in_words(trade.created_at) %>に投稿
+      <%= link_to trade.user.name, trade.user %>が<%= time_ago_in_words(trade.created_at) %>に投稿
+      <%= link_to "DMする", chat_path(trade.user) %>
     </span>
     <% if current_user?(trade.user) %>
         <%= link_to "delete", trade, method: :delete,

@@ -15,9 +15,11 @@ ActiveRecord::Schema.define(version: 2022_01_29_170350) do
   create_table "chats", force: :cascade do |t|
     t.integer "user_id"
     t.integer "room_id"
-    t.text "message"
+    t.text "message", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_chats_on_room_id"
+    t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
   create_table "platforms", force: :cascade do |t|
@@ -59,6 +61,8 @@ ActiveRecord::Schema.define(version: 2022_01_29_170350) do
     t.integer "room_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_user_rooms_on_room_id"
+    t.index ["user_id"], name: "index_user_rooms_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -72,6 +76,10 @@ ActiveRecord::Schema.define(version: 2022_01_29_170350) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "chats", "rooms"
+  add_foreign_key "chats", "users"
   add_foreign_key "trade_platforms", "platforms"
   add_foreign_key "trades", "users"
+  add_foreign_key "user_rooms", "rooms"
+  add_foreign_key "user_rooms", "users"
 end

@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :trades, dependent: :destroy
+  has_many :user_rooms, dependent: :destroy
+  has_many :chats, dependent: :destroy
   attr_accessor :remember_token
   before_save { email.downcase! }
   #nameカラムのバリデーション

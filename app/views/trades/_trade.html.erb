@@ -1,4 +1,4 @@
-<div class="card bg-secondary trades-contents">
+<div class="card bg-secondary">
   <div class="card-header text-left">
     <!--トレードタイプで背景色変更-->
     <% if trade.trade_type == "Buy" %>
@@ -8,6 +8,7 @@
     <% end %>
     <span class="trade-icon bg-dark"> <%= trade.mode_i18n %></span>
     <span class="trade-icon bg-dark"><%= trade.season_i18n %></span>
+
   </div>
   <div class="card-body text-left">
     <!--トレードタイプで順番を変更-->
@@ -49,11 +50,18 @@
   <div class="card-footer text-left card-footer-contents">
     <span class="timestamp">
       <%= link_to trade.user.name, trade.user %>が<%= time_ago_in_words(trade.created_at) %>に投稿
-      <%= link_to "DMする", chat_path(trade.user) %>
     </span>
+    <!--    投稿が自分なら削除ボタン出現-->
     <% if current_user?(trade.user) %>
-        <%= link_to "delete", trade, method: :delete,
-                    data: { confirm: "本当に消しますか？" }, class: "delete-link" %>
+      <%= link_to trade, class: "text-danger", method: :delete, data: { confirm: "本当に消しますか？" } do %>
+        <i class="bi bi-trash" style="font-size: 1.5rem"></i>
+      <% end %>
+    <% end %>
+    <!--    投稿が自分でないならDMボタン出現-->
+    <% unless current_user?(trade.user) %>
+      <%= link_to chat_path(trade.user), class: "text-white" do %>
+        <i class="bi bi-chat-dots" style="font-size: 1.5rem" title="チャット"></i>
+      <% end %>
     <% end %>
   </div>
 

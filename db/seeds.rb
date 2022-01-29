@@ -20,13 +20,3 @@ Platform.create!(name: "PC")
 Platform.create!(name: "Switch")
 Platform.create!(name: "Playstation")
 Platform.create!(name: "Xbox")
-
-# ユーザーの一部を対象にマイクロポストを生成する
-20.times do
-  user = User.first
-  item_to_want = Faker::Lorem.sentence(word_count: 5)
-  item_to_offer = Faker::Lorem.sentence(word_count: 5)
-  content = Faker::Lorem.sentence(word_count: 5)
-  user.trades.create!(item_to_want: item_to_want, item_to_offer: item_to_offer, content: content,
-                      platform_ids: [1,2,3,4])
-end

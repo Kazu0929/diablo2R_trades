@@ -1,0 +1,21 @@
+<% provide(:title, "Chats") %>
+<h1>Chats</h1>
+<div class="row">
+  <div class="col-md-6 mx-auto item-contents bg-secondary">
+    <h3><%= @user.name %>とのチャット</h3>
+
+      <div class="message">
+        <%= render @chats %>
+      </div>
+
+
+    <div class="form-group">
+      <%= form_with(model: @chat, local: false) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <%= f.text_field :message, class: "form-control" %>
+        <%= f.hidden_field :room_id %>
+        <%= f.submit "送信", class: "btn btn-success chat-btn" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -6,6 +6,10 @@
       <h3>
         <%= @user.name %>
       </h3>
+      <% unless current_user?(@user) %>
+        <i class="bi bi-envelope text-right"></i>
+        <%=  link_to "DM", chat_path(@user), class: "text-right"  %>
+      <%  end %>
     </section>
   </aside>
   <div class="col-md-7 offset-md-1 bg-secondary item-contents">

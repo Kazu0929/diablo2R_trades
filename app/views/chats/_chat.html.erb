@@ -1,0 +1,9 @@
+  <% if chat.user == current_user %>
+    <div class="balloon1-right">
+      <p><%= chat.message %></p>
+    </div>
+  <% else %>
+    <div class="balloon1-left">
+      <p><%= chat.message %></p>
+    </div>
+  <% end %>

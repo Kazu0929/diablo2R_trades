@@ -1,0 +1,9 @@
+/*.messageを部分更新。appendメソッドで要素を追加 */
+$('.message').append("<div class='balloon1-right'> <p><%= @chat.message %></p> </div>");
+
+/*チャット投稿後、フォームの値に前回の投稿内容が残らないようにする */
+$('input[type=text]').val("")
+
+
+
+

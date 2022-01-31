@@ -13,7 +13,7 @@
       <% end %>
       <% if current_user?(@user) %>
         <h3>一致したトレード</h3>
-        <% unless @match_trades %>
+        <% if @match_trades.blank? %>
           <p>マッチしたトレードはありません</p>
         <% else %>
           <!--        一致したトレードを一覧で表示-->

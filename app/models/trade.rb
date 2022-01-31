@@ -1,8 +1,6 @@
 class Trade < ApplicationRecord
 
   belongs_to :user
-  has_many :trade_platforms, dependent: :destroy
-  has_many :platforms, through: :trade_platforms
 
   #最新順に取得
   default_scope -> { order(created_at: :desc) }

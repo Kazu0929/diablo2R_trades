@@ -1,18 +1,28 @@
 <% provide(:title, @user.name) %>
 <h1>My Page</h1>
 <div class="row">
-  <aside class="col-md-4 item-contents bg-secondary">
+  <aside class="col-md-5 item-contents bg-secondary">
     <section class="user_info">
       <h3>
         <%= @user.name %>
       </h3>
       <% unless current_user?(@user) %>
-        <i class="bi bi-envelope text-right"></i>
-        <%=  link_to "DM", chat_path(@user), class: "text-right"  %>
-      <%  end %>
+        <%= link_to chat_path(@user.id), class: "text-white" do %>
+          <i class="bi bi-chat-dots" style="font-size: 1.5rem" title="チャット">連絡する</i>
+        <% end %>
+      <% end %>
+      <% if current_user?(@user) %>
+        <h3>一致したトレード</h3>
+        <% unless @match_trades %>
+          <p>マッチしたトレードはありません</p>
+        <% else %>
+          <!--        一致したトレードを一覧で表示-->
+          <%= render partial: "trades/trade", collection: @match_trades %>
+        <% end %>
+      <% end %>
     </section>
   </aside>
-  <div class="col-md-7 offset-md-1 bg-secondary item-contents">
+  <div class="col-md-6 offset-md-1 bg-secondary item-contents">
     <% if @user.trades.any? %>
       <h3>投稿数 (<%= @user.trades.count %>)</h3>
       <%= render @trades %>

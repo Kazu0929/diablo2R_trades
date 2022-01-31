@@ -1,9 +1,9 @@
   <% if chat.user == current_user %>
-    <div class="balloon1-right">
+    <div class="balloon1-right" data-chat-id = <%= chat.id %>>
       <p><%= chat.message %></p>
     </div>
   <% else %>
-    <div class="balloon1-left">
+    <div class="balloon1-left" data-chat-id = <%= chat.id %>>
       <p><%= chat.message %></p>
     </div>
   <% end %>

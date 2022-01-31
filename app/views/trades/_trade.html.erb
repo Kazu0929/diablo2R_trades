@@ -32,9 +32,9 @@
   <div class="card-body text-left item-info">
     <span class="trade-icon bg-dark">
       プラットフォーム：
-      <% trade.trade_platforms.each do |trade_platform| %>
+      <% trade.user.platforms.each do |platform| %>
 <!--        各データにあったアイコンを表示-->
-        <% case trade_platform.platform.name %>
+        <% case platform.name %>
         <% when 'PC' then %>
           <i class="bi bi-pc" title="PC"></i>
         <% when 'Switch' then %>

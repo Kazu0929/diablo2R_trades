@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'chats/show'
   root 'static_pages#home'
   get 'sessions/new'
   get 'signup', to: 'users#new'

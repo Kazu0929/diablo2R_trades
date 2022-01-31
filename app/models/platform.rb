@@ -1,4 +1,4 @@
 class Platform < ApplicationRecord
-  has_many :trade_platforms
-  has_many :trades, through: :trade_platforms
+  has_many :user_platforms
+  has_many :users, through: :user_platforms
 end

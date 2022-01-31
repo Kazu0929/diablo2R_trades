@@ -11,4 +11,10 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
+
+  #JSONファイルを変換
+  def items_data
+    items_json = File.read("#{Rails.public_path}/items.json")
+    JSON.load(items_json)
+  end
 end

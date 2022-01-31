@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_29_170350) do
+ActiveRecord::Schema.define(version: 2022_01_31_083718) do
 
   create_table "chats", force: :cascade do |t|
     t.integer "user_id"
@@ -33,15 +33,6 @@ ActiveRecord::Schema.define(version: 2022_01_29_170350) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "trade_platforms", force: :cascade do |t|
-    t.integer "trade_id"
-    t.integer "platform_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["platform_id"], name: "index_trade_platforms_on_platform_id"
-    t.index ["trade_id"], name: "index_trade_platforms_on_trade_id"
-  end
-
   create_table "trades", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "mode", default: 0, null: false
@@ -54,6 +45,15 @@ ActiveRecord::Schema.define(version: 2022_01_29_170350) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id", "created_at"], name: "index_trades_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_trades_on_user_id"
+  end
+
+  create_table "user_platforms", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "platform_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["platform_id"], name: "index_user_platforms_on_platform_id"
+    t.index ["user_id"], name: "index_user_platforms_on_user_id"
   end
 
   create_table "user_rooms", force: :cascade do |t|
@@ -78,8 +78,9 @@ ActiveRecord::Schema.define(version: 2022_01_29_170350) do
 
   add_foreign_key "chats", "rooms"
   add_foreign_key "chats", "users"
-  add_foreign_key "trade_platforms", "platforms"
   add_foreign_key "trades", "users"
+  add_foreign_key "user_platforms", "platforms"
+  add_foreign_key "user_platforms", "users"
   add_foreign_key "user_rooms", "rooms"
   add_foreign_key "user_rooms", "users"
 end

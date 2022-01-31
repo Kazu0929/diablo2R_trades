@@ -1,4 +1,5 @@
 class ChatsController < ApplicationController
+  before_action :logged_in_user, only: [:create, :show]
 
   def show
     #チャット相手の情報を取得
@@ -29,10 +30,10 @@ class ChatsController < ApplicationController
 
     respond_to do |format|
       if @chat.save
-        format.html { redirect_to @chat } # HTMLで返す場合、showアクションを実行し詳細ページを表示
-        format.js  # create.js.erbが呼び出される
+        format.html { redirect_to @chat }
+        format.js
       else
-        format.html { render :show } # HTMLで返す場合、show.html.erbを表示
+        format.html { render :show }
       end
     end
   end

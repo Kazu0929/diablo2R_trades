@@ -10,10 +10,7 @@
     <%= f.label :trade_type %>
     <%= f.collection_select :trade_type, Trade.trade_types_i18n, :first, :last,{}, {class: "form-control"} %>
 
-    <label>プラットフォーム：必須</label>
     <%= javascript_pack_tag 'search' %>
-    <%= f.collection_select :platform_ids, Platform.all, :id, :name,{}, {class: "form-control search", multiple: true, required: true}  %>
-
     <%= f.label :item_to_want %>
     <%= f.select :item_to_want, options_for_select(@items),{}, class: "form-control search" %>
 

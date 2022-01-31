@@ -5,10 +5,15 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
+  id: 1
   name: "PC"
 two:
+  id: 2
   name: "Switch"
+
 three:
+  id: 3
   name: "Playstation"
 four:
+  id: 4
   name: "Xbox"

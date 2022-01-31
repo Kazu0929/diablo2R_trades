@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   has_many :trades, dependent: :destroy
+  has_many :user_platforms
+  has_many :platforms, through: :user_platforms
+
   has_many :user_rooms, dependent: :destroy
   has_many :chats, dependent: :destroy
   attr_accessor :remember_token
@@ -28,6 +31,40 @@ class User < ApplicationRecord
     def new_token
       SecureRandom.urlsafe_base64
     end
+
+    # マッチするアイテムを検索
+    def find_match_items(user)
+      #ユーザの使用プラットフォームを取得
+      platform_ids = user.platforms.ids
+      #モードを配列で取得
+      user_mode = user.trades.pluck(:mode)
+      #シーズンを配列で取得
+      user_season = user.trades.pluck(:season)
+      #欲しいアイテムを配列で取得
+      user_trades_want = user.trades.pluck(:item_to_want)
+      #提示するアイテムを配列で取得
+      user_trades_offer = user.trades.pluck(:item_to_offer)
+      #その他のユーザーの投稿を全て取得
+      other_trades = Trade.where.not(user_id: user)
+      #その他のユーザーの投稿から自分とマッチする投稿を検索
+      match_trades_without_platforms = other_trades.where(
+        mode: user_mode, season: user_season,
+        item_to_want: user_trades_offer,
+        item_to_offer: user_trades_want,)
+
+      #ユーザーの使用プラットフォームが空でないか判定
+      unless platform_ids.empty?
+        match_trades = []
+        # マッチした投稿の中でユーザーの使用するプラットフォームが、 含まれる投稿のみを配列に追加
+        match_trades_without_platforms.each do |trade|
+          match_platform = trade.user.platforms.ids & platform_ids
+          unless match_platform.empty?
+            match_trades.push(trade)
+          end
+        end
+        match_trades.uniq
+      end
+    end
   end
 
   # 永続セッションのためにユーザーをデータベースに記憶する
@@ -46,4 +83,5 @@ class User < ApplicationRecord
   def forget
     update_attribute(:remember_digest, nil)
   end
+
 end

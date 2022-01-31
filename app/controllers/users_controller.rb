@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
@@ -10,6 +11,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @trades = @user.trades.paginate(page: params[:page], per_page: 10)
+
+    @match_trades = User.find_match_items(@user)
   end
 
   def new
@@ -18,6 +21,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.platform_ids.reject(&:blank?)
     if @user.save
       log_in @user
       flash[:success] = "登録に成功しました。ようこそ！"
@@ -48,7 +52,7 @@ class UsersController < ApplicationController
   private
   #ストロングパラメーターズ
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, platform_ids: [])
   end
 
   # 正しいユーザーかどうか確認

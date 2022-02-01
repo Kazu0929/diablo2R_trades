@@ -15,7 +15,7 @@
 
   <%= javascript_pack_tag 'search' %>
   <label>所持しているプラットフォーム</label>
-  <%= f.collection_select :platform_ids, Platform.all, :id, :name,{}, {class: "form-control search", multiple: true, required: true}  %>
+  <%= f.collection_select :platform_ids, Platform.all, :id, :name,{}, {class: "form-control search", multiple: true}  %>
 
   <%= f.submit yield(:button_text), class: "btn btn-primary submit-buttons" %>
 <% end %>

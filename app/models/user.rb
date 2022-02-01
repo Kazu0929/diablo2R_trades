@@ -46,24 +46,26 @@ class User < ApplicationRecord
       user_trades_offer = user.trades.pluck(:item_to_offer)
       #その他のユーザーの投稿を全て取得
       other_trades = Trade.where.not(user_id: user)
-      #その他のユーザーの投稿から自分とマッチする投稿を検索
+      #その他のユーザーの投稿から自分のアイテムとマッチする投稿を検索
       match_trades_without_platforms = other_trades.where(
         mode: user_mode, season: user_season,
         item_to_want: user_trades_offer,
         item_to_offer: user_trades_want,)
 
-      #ユーザーの使用プラットフォームが空でないか判定
-      unless platform_ids.empty?
-        match_trades = []
-        # マッチした投稿の中でユーザーの使用するプラットフォームが、 含まれる投稿のみを配列に追加
-        match_trades_without_platforms.each do |trade|
-          match_platform = trade.user.platforms.ids & platform_ids
-          unless match_platform.empty?
-            match_trades.push(trade)
-          end
+      #プラットフォームを設定してない場合は、アイテムのマッチングのみのデータを返す
+      return match_trades_without_platforms if (platform_ids.blank?)
+      #プラットフォームでの絞り込み結果を格納する配列を用意
+      match_trades = []
+      # マッチした投稿の中でユーザーの使用するプラットフォームが、 含まれる投稿のみを配列に追加
+      match_trades_without_platforms.each do |trade|
+        #マッチングした投稿のユーザーと自身のプラットフォームの配列に重複があるか確認
+        match_platform = trade.user.platforms.ids & platform_ids
+        #配列が空でなければ先ほど用意した配列にpush
+        unless match_platform.empty?
+          match_trades.push(trade)
         end
-        match_trades.uniq
       end
+      match_trades.uniq
     end
   end
 

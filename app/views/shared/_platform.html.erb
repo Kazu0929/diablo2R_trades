@@ -1,0 +1,16 @@
+<span class="trade-icon bg-dark">
+      プラットフォーム：
+  <% user.platforms.each do |platform| %>
+<!--        各データにあったアイコンを表示-->
+    <% case platform.name %>
+        <% when 'PC' then %>
+          <i class="bi bi-pc" title="PC"></i>
+        <% when 'Switch' then %>
+          <i class="bi bi-nintendo-switch" title="Switch"></i>
+        <% when 'Playstation' then %>
+          <i class="bi bi-playstation" title="Playstation"></i>
+        <% else %>
+          <i class="bi bi-xbox" title="Xbox"></i>
+        <% end %>
+      <% end %>
+    </span>

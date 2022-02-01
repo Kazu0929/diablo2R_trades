@@ -15,6 +15,10 @@ body {
   font-family: "Noto Sans", sans-serif;
 }
 
+h3 {
+  padding-top: 15px;
+}
+
 .site-contents {
   background-color: #050505;
   background-image: url($url);
@@ -53,6 +57,13 @@ body {
 
 .pagination {
   padding: 10px 0;
+}
+
+
+.trade-icon {
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin-right: 5px;
 }
 
 //ヘッダー

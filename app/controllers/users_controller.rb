@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @trades = @user.trades.paginate(page: params[:page], per_page: 10)
-
+    #マッチングしたアイテムデータを格納
     @match_trades = User.find_match_items(@user)
   end
 

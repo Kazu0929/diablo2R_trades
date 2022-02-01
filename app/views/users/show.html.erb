@@ -6,10 +6,13 @@
       <h3>
         <%= @user.name %>
       </h3>
+      <%= render 'shared/platform', user: @user %>
       <% unless current_user?(@user) %>
+        <div>
         <%= link_to chat_path(@user.id), class: "text-white" do %>
           <i class="bi bi-chat-dots" style="font-size: 1.5rem" title="チャット">連絡する</i>
         <% end %>
+        </div>
       <% end %>
       <% if current_user?(@user) %>
         <h3>一致したトレード</h3>

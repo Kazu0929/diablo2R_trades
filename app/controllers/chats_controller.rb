@@ -39,10 +39,16 @@ class ChatsController < ApplicationController
   end
 
   def destroy
-    chat = Chat.find(params[:id])
-    chat.destroy
-    flash[:success] = "メッセージを消去しました"
-    redirect_to chat_path(chat.room_id)
+    @chat = Chat.find(params[:id])
+    respond_to do |format|
+      if @chat.destroy
+        format.html { redirect_to chat_path(@chat.room_id) }
+        format.js
+      else
+        format.html { render :show }
+      end
+    end
+
   end
 
   private

@@ -1,13 +1,13 @@
   <% if current_user?(chat.user) %>
-    <div class="balloon1-right" data-chat-id = <%= chat.id %>>
+    <div class="balloon1-right"  id="chat-<%= chat.id %>">
       <p><%= chat.message %></p>
       <!--    投稿が自分なら削除ボタン出現-->
-        <%= link_to chat, method: :delete do %>
+        <%= link_to chat, method: :delete, remote: true do %>
           <i class="bi bi-trash text-secondary"></i>
         <% end %>
     </div>
   <% else %>
-    <div class="balloon1-left" data-chat-id = <%= chat.id %>>
+    <div class="balloon1-left" id="chat-<%= chat.id %>">
       <p><%= chat.message %></p>
     </div>
   <% end %>

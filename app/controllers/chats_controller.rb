@@ -38,6 +38,13 @@ class ChatsController < ApplicationController
     end
   end
 
+  def destroy
+    chat = Chat.find(params[:id])
+    chat.destroy
+    flash[:success] = "メッセージを消去しました"
+    redirect_to chat_path(chat.room_id)
+  end
+
   private
 
   def chat_params
